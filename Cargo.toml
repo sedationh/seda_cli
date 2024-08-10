@@ -1,6 +1,12 @@
 [package]
-name = "seda_cli"
+name = "seda"
 version = "0.1.0"
 edition = "2021"
 
+authors = ["SedationH <sedationh@gmail.com>"]
+description = "SedationH's CLI toolset"
+license = "MIT"
+repository = "https://github.com/sedationh/seda_cli"
+
 [dependencies]
+clap = { version = "3.2", features = ["derive"] }
