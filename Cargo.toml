@@ -4,7 +4,7 @@ version = "0.1.0"
 edition = "2021"
 
 authors = ["SedationH <sedationh@gmail.com>"]
-description = "SedationH's CLI toolset"
+description = "SedationH's CLI toolkit"
 license = "MIT"
 repository = "https://github.com/sedationh/seda_cli"
 
