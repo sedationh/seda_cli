@@ -16,7 +16,7 @@
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/SedationH/seda_cli.git
+   git clone https://github.com/sedationh/seda_cli.git
    cd seda_cli
    ```
 
