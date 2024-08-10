@@ -1,6 +1,6 @@
 # seda CLI
 
-`seda` is "SedationH's CLI toolkit"
+`seda` is SedationH's CLI toolkit
 
 ## Features
 
