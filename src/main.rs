@@ -17,7 +17,6 @@ enum Commands {
         #[clap(value_parser)]
         new_name: Option<String>,
     },
-    // 在这里可以添加更多的子命令
 }
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
@@ -36,9 +35,17 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 open_vscode(&target_dir)?;
             } else {
                 println!("Cloning repository: {}", repo_url);
-                clone_repo(repo_url, &target_dir)?;
-                println!("Opening new directory: {}", target_dir.display());
-                open_vscode(&target_dir)?;
+                match clone_repo(repo_url, &target_dir) {
+                    Ok(_) => {
+                        println!("Repository cloned successfully.");
+                        println!("Opening new directory: {}", target_dir.display());
+                        open_vscode(&target_dir)?;
+                    }
+                    Err(e) => {
+                        eprintln!("Failed to clone repository: {}", e);
+                        eprintln!("Not opening VSCode due to clone failure.");
+                    }
+                }
             }
         }
     }
@@ -47,17 +54,21 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 }
 
 fn clone_repo(url: &str, target: &Path) -> Result<(), Box<dyn std::error::Error>> {
-    Command::new("git")
+    let output = Command::new("git")
         .arg("clone")
         .arg(url)
         .arg(target)
-        .status()?;
+        .output()?;
+
+    if !output.status.success() {
+        let error_message = String::from_utf8_lossy(&output.stderr);
+        return Err(error_message.to_string().into());
+    }
+
     Ok(())
 }
 
 fn open_vscode(path: &Path) -> Result<(), Box<dyn std::error::Error>> {
-    Command::new("code")
-        .arg(path)
-        .status()?;
+    Command::new("code").arg(path).status()?;
     Ok(())
 }
