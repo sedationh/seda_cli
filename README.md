@@ -58,3 +58,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Author
 
 SedationH
+
+## Environment Variables
+
+- `VSCODE_ALTERNATIVE`: Set a custom editor to replace VSCode. For example:
+  ```sh
+  export VSCODE_ALTERNATIVE=cursor
+  ```
