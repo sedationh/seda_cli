@@ -1,6 +1,7 @@
 use clap::{Parser, Subcommand};
 use std::path::Path;
 use std::process::Command;
+use std::env;
 
 #[derive(Parser)]
 #[clap(author, version, about, long_about = None)]
@@ -69,6 +70,7 @@ fn clone_repo(url: &str, target: &Path) -> Result<(), Box<dyn std::error::Error>
 }
 
 fn open_vscode(path: &Path) -> Result<(), Box<dyn std::error::Error>> {
-    Command::new("code").arg(path).status()?;
+    let editor = env::var("VSCODE_ALTERNATIVE").unwrap_or_else(|_| "code".to_string());
+    Command::new(editor).arg(path).status()?;
     Ok(())
 }
