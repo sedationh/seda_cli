@@ -10,3 +10,4 @@ repository = "https://github.com/sedationh/seda_cli"
 
 [dependencies]
 clap = { version = "3.2", features = ["derive"] }
+url = "2.4.0"

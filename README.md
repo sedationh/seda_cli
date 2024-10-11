@@ -4,7 +4,11 @@
 
 ## Features
 
-- `code`: Quickly clone a GitHub repository and open it in VSCode.
+- Clone a Git repository from a given URL
+- Automatically open the cloned repository in Visual Studio Code
+- Support for custom repository names
+- Fallback to alternative URL format if initial clone fails
+- Use a custom editor instead of VSCode (via environment variable)
 
 #### Prerequisites
 
